@@ -104,19 +104,21 @@ exports.addMobile = function(req, res) {
     //console.log(req.body.data);
     var x = req.body.data,
     y = x.replace(/}{/gi,"};{").split(";"),
-    z = [];
+    z = [],
+    w = 0;
     y.forEach(function(element, index){
+        w++;
+        console.log("Intentando: " + w)
+        console.log(element)
         try{
             z.push(JSON.parse(element));    
         }
         catch(e){
             console.log("Error:");
             console.log(e);
-            console.log("Intentando:");
-            console.log(element);
         }
     });
-    console.log(z);
+    //console.log(z);
     /*resource['date'] = new Date().addHours(-6);
     resource['hour'] = new Date().addHours(-6).getHours();
     resource['minute'] = new Date().addHours(-6).getMinutes();
