@@ -101,8 +101,8 @@ exports.addIoT = function(req, res) {
 }
 
 exports.addMobile = function(req, res) {
-    console.log(req.body.data);
-    /*var x = req.body.data,
+    //console.log(req.body.data);
+    var x = req.body.data,
     y = x.replace(/}{/gi,"};{").split(";"),
     z = [];
     y.forEach(function(element, index){
@@ -116,7 +116,7 @@ exports.addMobile = function(req, res) {
             console.log(element);
         }
     });
-    console.log(z);*/
+    console.log(z);
     /*resource['date'] = new Date().addHours(-6);
     resource['hour'] = new Date().addHours(-6).getHours();
     resource['minute'] = new Date().addHours(-6).getMinutes();
