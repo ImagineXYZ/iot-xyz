@@ -103,21 +103,34 @@ exports.addIoT = function(req, res) {
 exports.addMobile = function(req, res) {
     //console.log(req.body.data);
     var x = req.body.data,
-    y = x.replace(/}{/gi,"};{").split(";"),
-    z = [],
-    w = 0;
+    y = x.replace(/}{/gi,"};{").split(";");
     y.forEach(function(element, index){
-        w++;
-        console.log("Intentando: " + w)
-        console.log(element)
         try{
-            z.push(JSON.parse(element));    
+            var z = JSON.parse(element);
+            db.collection('Ids').findAndModify({_id:1},{},{$inc:{mobile:1}},function(err, doc_ids) {
+                if(err) {
+                    throw err;
+                    res.send(400, err);
+                }
+                else{
+                    element["_id"] = doc_ids.value.mobile;
+                    db.collection('Mobile').insert(z, function(error, doc_project){
+                        if(error) {
+                            throw error;
+                            res.send(400, error);
+                        }
+                        else{
+                            //res.send(200, resource);
+                        }
+                    })
+                }
+            }); 
         }
         catch(e){
-            console.log("Error:");
             console.log(e);
         }
     });
+    res.send(200, true);
     //console.log(z);
     /*resource['date'] = new Date().addHours(-6);
     resource['hour'] = new Date().addHours(-6).getHours();
