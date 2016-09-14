@@ -101,8 +101,23 @@ exports.addIoT = function(req, res) {
 }
 
 exports.addMobile = function(req, res) {
-    var resource = req.body;
-    resource['date'] = new Date().addHours(-6);
+    console.log(req.body.data);
+    /*var x = req.body.data,
+    y = x.replace(/}{/gi,"};{").split(";"),
+    z = [];
+    y.forEach(function(element, index){
+        try{
+            z.push(JSON.parse(element));    
+        }
+        catch(e){
+            console.log("Error:");
+            console.log(e);
+            console.log("Intentando:");
+            console.log(element);
+        }
+    });
+    console.log(z);*/
+    /*resource['date'] = new Date().addHours(-6);
     resource['hour'] = new Date().addHours(-6).getHours();
     resource['minute'] = new Date().addHours(-6).getMinutes();
     db.collection('Ids').findAndModify({_id:1},{},{$inc:{mobile:1}},function(err, doc_ids) {
@@ -122,5 +137,5 @@ exports.addMobile = function(req, res) {
                 }
             })
         }
-    });
+    });*/
 }
