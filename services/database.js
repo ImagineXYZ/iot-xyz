@@ -62,7 +62,7 @@ exports.getLast = function(req,res) {
 
 exports.getMobile = function(req,res) {
     var query = req.query;
-    db.collection('IoT').find(query).toArray(function(error, doc){
+    db.collection('Mobile').find(query).toArray(function(error, doc){
         if(error) {
             throw error;
             res.send(400, error);
