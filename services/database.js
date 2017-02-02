@@ -29,11 +29,11 @@ Date.prototype.addHours= function(h){
     this.setHours(this.getHours()+h);
     return this;
 }
-
+*/
 
 /* Funciones CRUD Básicas */
 
-//GET - READ
+/*//GET - READ
 exports.getData = function(req,res) {
     var query = req.query;
     db.collection('IoT').find(query).toArray(function(error, doc){

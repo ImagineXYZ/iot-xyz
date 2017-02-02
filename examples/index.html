@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>  
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="ImagineXYZ"> 
+    <title>Imagine XYZ - Research, Design, Innovation, Prototyping and Development </title>
+    <meta name="title" content="Imagine XYZ - Research, Design, Innovation, Prototyping and Development">
+    <meta name="description" content="Imagine XYZ - Research, Design, Innovation, Prototyping and Development">  
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/underscore-min.js"></script>
+    <script type="text/javascript" src="assets/js/chartDraw.js"></script>
+    
+    <link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/main.css" type="text/css">
+  </head>
+  <body>
+    <div class="header">
+      <div class="row">       
+        <div class="col-sm-6">            
+          <img src="assets/img/imagine.png">
+        </div> 
+        <div class="col-sm-6">       
+          <img src="assets/img/Micitt360.jpg" style="max-width:175px">
+        </div>
+        <br>
+        <br>
+      </div>
+      <div class="row">
+        <h2>Juegos Básicos de IoT</h2>
+      </div>
+      <br>
+    </div>
+    <div class="row">
+      <div class="col-sm-1"> 
+      </div>
+      <div class="col-sm-3" style="display:flex;"> 
+        <div id="chart1_div" ></div>
+        <div id="chart2_div" ></div>
+      </div>
+      <div class="col-sm-4"> 
+        <div id="chart3_div" ></div>
+      </div>
+      <div class="col-sm-4"> 
+        <div id="chart4_div" ></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    $(function() {
+      getData();
+    });
+  </script>
+</html>
