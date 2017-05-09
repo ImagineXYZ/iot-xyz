@@ -106,13 +106,17 @@ client.on('connect', function() { // When connected
       try{
         var msgJson = JSON.parse(message);
         console.log(topic);
-        if(topic == 'imagine/press'){
+        /*if(topic == 'imagine/press'){
           console.log("pressure of '" + msgJson.id + "' value '" + msgJson.value + "'");
           basicServices.mqttPress(msgJson.id,msgJson.value);
         }
         else if(topic == 'imagine/temp'){
           console.log("temperature of '" + msgJson.id + "' value '" + msgJson.value + "'");
           basicServices.mqttTemp(msgJson.id,msgJson.value);
+        }*/
+        if(topic == 'imagine/bmp'){
+          console.log("Sensor # '" + msgJson.id + "' has the values '" + msgJson.temp + " & " msgJson.press);
+          basicServices.mqttBmp(msgJson.id, msgJson.temp, msgJson.press);
         }
         else if(topic == 'imagine/ultra'){
           console.log("ultrasonic of '" + msgJson.id + "' value '" + msgJson.value + "'");

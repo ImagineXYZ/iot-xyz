@@ -59,3 +59,8 @@ exports.mqttTemp = function(id, value) {
 exports.mqttPress = function(id, value) {
     pressSensors[id].press = parseFloat(value);
 }
+
+exports.mqttBmp = function(id, temp, press) {
+    tempSensors[id].temp = parseFloat(temp);
+    pressSensors[id].press = parseFloat(press);
+}
