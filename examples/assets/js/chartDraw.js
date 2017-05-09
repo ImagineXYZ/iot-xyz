@@ -141,11 +141,14 @@ function drawChart3(dataJson) {
 
   setTimeout(function() {
      $("text").each(function () {
-        if ($(this).text() == "Previous data") {
+        if ($(this).text() == "Previous") {
           $(this).text('Meta');
+        } 
+        else if ($(this).text() == "data") {
+          $(this).text('');
         } 
       });
   }, 50);
 
-  //setTimeout(getData, 200);
+  setTimeout(getData, 200);
 }
