@@ -21,12 +21,6 @@ exports.postPress = function(req, res) {
     res.send(200, JSON.stringify(req.body)); 
 }
 
-exports.mqttPress = function(id, value) {
-    pressSensors[id].press = parseFloat(value);
-//    res.send(200, JSON.stringify(req.body)); 
-}
-
-
 exports.getTemp = function(req, res) {
     res.send(200, tempSensors);
 }
@@ -51,4 +45,17 @@ exports.postUltra = function(req, res) {
     var idSensor = parseInt(req.body.Sensor.split('_')[1]);
     ultraSensors[idSensor].ultra = parseInt(req.body.Valor);
     res.send(200, JSON.stringify(req.body)); 
+}
+
+
+exports.mqttUltra = function(id, value) {
+    ultraSensors[id].ultra = parseFloat(value);
+}
+
+exports.mqttTemp = function(id, value) {
+    tempSensors[id].temp = parseFloat(value);
+}
+
+exports.mqttPress = function(id, value) {
+    pressSensors[id].press = parseFloat(value);
 }

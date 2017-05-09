@@ -99,20 +99,24 @@ var client = mqtt.connect(url, options);
 
 client.on('connect', function() { // When connected
 
-  // subscribe to a topic
-  client.subscribe('imagine/xyz', function() {
-    // when a message arrives, do something with it
-    client.on('message', function(topic, message, packet) {
-      console.log("Received '" + message + "' on '" + topic + "'");
-    });
-  });
 
-  client.subscribe('imagine/press', function() {
+  client.subscribe('imagine/#', function() {
     // when a message arrives, do something with it
     client.on('message', function(topic, message, packet) {
       var msgJson = JSON.parse(message);
-      console.log("Press of '" + msgJson.id + "' value '" + msgJson.value + "'");
-      basicServices.mqttPress(msgJson.id,msgJson.value);
+      console.log(topic);
+      if(topic == 'imagine/press'){
+        console.log("pressure of '" + msgJson.id + "' value '" + msgJson.value + "'");
+        basicServices.mqttPress(msgJson.id,msgJson.value);
+      }
+      else if(topic == 'imagine/temp'){
+        console.log("temperature of '" + msgJson.id + "' value '" + msgJson.value + "'");
+        basicServices.mqttTemp(msgJson.id,msgJson.value);
+      }
+      else if(topic == 'imagine/ultra'){
+        console.log("ultrasonic of '" + msgJson.id + "' value '" + msgJson.value + "'");
+        basicServices.mqttUltra(msgJson.id,msgJson.value);
+      }
     });
   });
 
