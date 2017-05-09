@@ -138,11 +138,6 @@ function drawChart3(dataJson) {
 
   var diffData = colChartDiff.computeDiff(oldData, newData);
   colChartDiff.draw(diffData, options);
-  
-
-  google.visualization.events.addListener(colChartDiff, 'onmouseover', function (rowColumn) {
-    selectHandler();
-  });
 
   setTimeout(function() {
      $("text").each(function () {
@@ -152,20 +147,5 @@ function drawChart3(dataJson) {
       });
   }, 50);
 
-  setTimeout(getData, 200);
-}
-
-function selectHandler()
-{
-  $('#chart4_div').on('DOMNodeInserted', function (e) {
-    
-    if ($(e.target).is('.google-visualization-tooltip')) {
-      {
-        console.log('Tooltip');
-        // now you will have access to the "tooltip"
-        // and can  do the needed changes
-
-      }
-    }
-  });
+  //setTimeout(getData, 200);
 }
