@@ -13,6 +13,7 @@
     "cookie-parser": "*",
     "body-parser": "*",
     "mongodb": "*",
-    "cors": "*"
+    "cors": "*",
+    "mqtt":">= 0.0.1"
   }
 }
