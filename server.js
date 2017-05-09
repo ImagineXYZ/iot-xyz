@@ -85,12 +85,17 @@ var mqtt = require('mqtt'), url = require('url');
 // Parse
 var mqtt_url = url.parse(process.env.CLOUDMQTT_URL || 'mqtt://localhost:1883');
 var auth = (mqtt_url.auth || ':').split(':');
+var url = "mqtt://" + mqtt_url.host;
+
+var options = {
+  port: mqtt_url.port,
+  clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
+  username: auth[0],
+  password: auth[1],
+};
 
 // Create a client connection
-var client = mqtt.createClient(mqtt_url.port, mqtt_url.hostname, {
-  username: auth[0],
-  password: auth[1]
-});
+var client = mqtt.connect(url, options);
 
 client.on('connect', function() { // When connected
 
