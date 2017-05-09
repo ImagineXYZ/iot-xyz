@@ -11,7 +11,7 @@ var uristring =
   process.env.MONGOHQ_URL || 
   process.env.MONGOLAB_URI||
   'mongodb://localhost/IoT';
-/*
+
 
 //Conexión con la base de datos
 mongo.MongoClient.connect(uristring, function(err, database) {
@@ -28,12 +28,12 @@ mongo.MongoClient.connect(uristring, function(err, database) {
 Date.prototype.addHours= function(h){
     this.setHours(this.getHours()+h);
     return this;
-}*/
+}
 
 /* Funciones CRUD Básicas */
 
 //GET - READ
-/*exports.getData = function(req,res) {
+exports.getData = function(req,res) {
     var query = req.query;
     db.collection('IoT').find(query).toArray(function(error, doc){
         if(error) {
@@ -72,9 +72,9 @@ exports.getMobile = function(req,res) {
     })
 }
 
-*/
+
 //POST- CREATE
-/*exports.addIoT = function(req, res) {
+exports.addIoT = function(req, res) {
     var resource = req.body;
     resource['date'] = new Date().addHours(-6);
     resource['hour'] = new Date().addHours(-6).getHours();
@@ -130,4 +130,4 @@ exports.addMobile = function(req, res) {
         }
     });
     res.send(200, true);
-}*/
+}
