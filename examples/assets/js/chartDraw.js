@@ -148,7 +148,7 @@ function drawChart3(dataJson) {
           $(this).text('');
         } 
       });
-  }, 50);
+  }, 5);
 
   setTimeout(getData, 200);
 }
