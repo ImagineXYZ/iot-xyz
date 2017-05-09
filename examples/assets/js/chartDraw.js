@@ -139,16 +139,14 @@ function drawChart3(dataJson) {
   var diffData = colChartDiff.computeDiff(oldData, newData);
   colChartDiff.draw(diffData, options);
 
-  setTimeout(function() {
-     $("text").each(function () {
-        if ($(this).text() == "Previous") {
-          $(this).text('Meta');
-        } 
-        else if ($(this).text() == "data") {
-          $(this).text('');
-        } 
-      });
-  }, 5);
+   $("text").each(function () {
+      if ($(this).text() == "Previous") {
+        $(this).text('Meta');
+      } 
+      else if ($(this).text() == "data") {
+        $(this).text('');
+      } 
+    });
 
   setTimeout(getData, 200);
 }
