@@ -139,15 +139,18 @@ function drawChart3(dataJson) {
   var diffData = colChartDiff.computeDiff(oldData, newData);
   colChartDiff.draw(diffData, options);
   
-  $("text").each(function () {
-    if ($(this).text() == "Previous data") {
-      $(this).text('Meta');
-    } 
-  });
 
-  google.visualization.events.addListener(barChartDiff, 'onmouseover', function (rowColumn) {
+  google.visualization.events.addListener(colChartDiff, 'onmouseover', function (rowColumn) {
     selectHandler();
   });
+
+  setTimeout(function() {
+     $("text").each(function () {
+        if ($(this).text() == "Previous data") {
+          $(this).text('Meta');
+        } 
+      });
+  }, 50);
 
   setTimeout(getData, 200);
 }
