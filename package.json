@@ -4,8 +4,8 @@
   "description": "IoT Server with NodeJs and MongoDB",
   "main": "app.js",
   "engines" : { 
-      "node" : "0.10.31",
-      "npm" : ">=1.4"
+      "node" : "6.9.4",
+      "npm" : "2.1.x"
   },
   "authors": [ "ImagineXYZ - Adrián Sánchez"],
   "dependencies": {
