@@ -148,5 +148,5 @@ function drawChart3(dataJson) {
       } 
     });
 
-  setTimeout(getData, 200);
+  setTimeout(getData, 50);
 }
