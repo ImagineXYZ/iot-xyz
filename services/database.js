@@ -11,7 +11,7 @@ var uristring =
   process.env.MONGOHQ_URL || 
   process.env.MONGOLAB_URI||
   'mongodb://localhost/IoT';
-
+/*
 
 //Conexión con la base de datos
 mongo.MongoClient.connect(uristring, function(err, database) {
@@ -28,8 +28,7 @@ mongo.MongoClient.connect(uristring, function(err, database) {
 Date.prototype.addHours= function(h){
     this.setHours(this.getHours()+h);
     return this;
-}
-*/
+}*/
 
 /* Funciones CRUD Básicas */
 
