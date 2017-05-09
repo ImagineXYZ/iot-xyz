@@ -103,19 +103,25 @@ client.on('connect', function() { // When connected
   client.subscribe('imagine/#', function() {
     // when a message arrives, do something with it
     client.on('message', function(topic, message, packet) {
-      var msgJson = JSON.parse(message);
-      console.log(topic);
-      if(topic == 'imagine/press'){
-        console.log("pressure of '" + msgJson.id + "' value '" + msgJson.value + "'");
-        basicServices.mqttPress(msgJson.id,msgJson.value);
+      try{
+        var msgJson = JSON.parse(message);
+        console.log(topic);
+        if(topic == 'imagine/press'){
+          console.log("pressure of '" + msgJson.id + "' value '" + msgJson.value + "'");
+          basicServices.mqttPress(msgJson.id,msgJson.value);
+        }
+        else if(topic == 'imagine/temp'){
+          console.log("temperature of '" + msgJson.id + "' value '" + msgJson.value + "'");
+          basicServices.mqttTemp(msgJson.id,msgJson.value);
+        }
+        else if(topic == 'imagine/ultra'){
+          console.log("ultrasonic of '" + msgJson.id + "' value '" + msgJson.value + "'");
+          basicServices.mqttUltra(msgJson.id,msgJson.value);
+        }
       }
-      else if(topic == 'imagine/temp'){
-        console.log("temperature of '" + msgJson.id + "' value '" + msgJson.value + "'");
-        basicServices.mqttTemp(msgJson.id,msgJson.value);
-      }
-      else if(topic == 'imagine/ultra'){
-        console.log("ultrasonic of '" + msgJson.id + "' value '" + msgJson.value + "'");
-        basicServices.mqttUltra(msgJson.id,msgJson.value);
+      catch(e){
+        console.log('Message is not a JSON');
+        console.log(message);
       }
     });
   });
