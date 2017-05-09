@@ -110,7 +110,7 @@ client.on('connect', function() { // When connected
   // publish a message to a topic
   client.publish('imagine/rocks', 'my message', function() {
     console.log("Message is published");
-    client.end(); // Close the connection when published
+    //client.end(); // Close the connection when published
   });
 });
 
