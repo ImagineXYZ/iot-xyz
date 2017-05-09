@@ -115,7 +115,7 @@ client.on('connect', function() { // When connected
           basicServices.mqttTemp(msgJson.id,msgJson.value);
         }*/
         if(topic == 'imagine/bmp'){
-          console.log("Sensor # '" + msgJson.id + "' has the values '" + msgJson.temp + " & " msgJson.press);
+          console.log("Sensor # '" + msgJson.id + "' has the values '" + msgJson.temp + " & " + msgJson.press);
           basicServices.mqttBmp(msgJson.id, msgJson.temp, msgJson.press);
         }
         else if(topic == 'imagine/ultra'){
