@@ -21,6 +21,11 @@ exports.postPress = function(req, res) {
     res.send(200, JSON.stringify(req.body)); 
 }
 
+exports.mqttPress = function(id, value) {
+    pressSensors[id].press = parseFloat(value);
+//    res.send(200, JSON.stringify(req.body)); 
+}
+
 
 exports.getTemp = function(req, res) {
     res.send(200, tempSensors);

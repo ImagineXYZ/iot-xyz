@@ -107,6 +107,15 @@ client.on('connect', function() { // When connected
     });
   });
 
+  client.subscribe('imagine/press', function() {
+    // when a message arrives, do something with it
+    client.on('message', function(topic, message, packet) {
+      var msgJson = JSON.parse(message);
+      console.log("Press of '" + msgJson.id + "' value '" + msgJson.value + "'");
+      basicServices.mqttPress(msgJson.id,msgJson.value);
+    });
+  });
+
   // publish a message to a topic
   client.publish('imagine/rocks', 'my message', function() {
     console.log("Message is published");
