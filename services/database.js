@@ -32,8 +32,8 @@ Date.prototype.addHours= function(h){
 
 /* Funciones CRUD Básicas */
 
-/*//GET - READ
-exports.getData = function(req,res) {
+//GET - READ
+/*exports.getData = function(req,res) {
     var query = req.query;
     db.collection('IoT').find(query).toArray(function(error, doc){
         if(error) {
@@ -72,9 +72,9 @@ exports.getMobile = function(req,res) {
     })
 }
 
-
+*/
 //POST- CREATE
-exports.addIoT = function(req, res) {
+/*exports.addIoT = function(req, res) {
     var resource = req.body;
     resource['date'] = new Date().addHours(-6);
     resource['hour'] = new Date().addHours(-6).getHours();
@@ -130,4 +130,4 @@ exports.addMobile = function(req, res) {
         }
     });
     res.send(200, true);
-}
+}*/
