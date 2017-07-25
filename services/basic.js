@@ -6,6 +6,7 @@
 var pressSensors = {1:{press:880,goal:940},2:{press:880,goal:940}},
     tempSensors = {1:{temp:0,goal:50},2:{temp:0,goal:50}},
     ultraSensors = {1:{ultra:0,goal:15},2:{ultra:0,goal:15}},
+    imuSensors = [],
     press=0;
 
 exports.getPress = function(req, res) {
@@ -63,4 +64,18 @@ exports.mqttPress = function(id, value) {
 exports.mqttBmp = function(id, temp, press) {
     tempSensors[id].temp = parseFloat(temp);
     pressSensors[id].press = parseFloat(press);
+}
+
+exports.mqttImu = function(msgJson) {
+    console.log(msgJson);
+    imuSensors.push(msgJson);
+}
+
+exports.getImu = function(req, res) {
+    var startIndex = 0;
+    if(imuSensors.length > 20){
+        startIndex = imuSensors.length - 20;
+    }
+    var newArray = imuSensors.slice(startIndex, imuSensors.length);
+    res.send(200, {count:imuSensors.length, array:newArray});
 }

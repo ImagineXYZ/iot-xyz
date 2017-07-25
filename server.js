@@ -12,9 +12,9 @@ var express = require('express'), //Biblioteca para permitir servicios REST
 
 //REST APIS
 var  database = require('./services/database'),  //Archivo donde vamos a comunicarnos con la base de datos
-	tempServices = require('./services/temperature'),
+	/*tempServices = require('./services/temperature'),
 	pressServices = require('./services/pressure'),
-  ultraServices = require('./services/ultrasonic'),
+  ultraServices = require('./services/ultrasonic'),*/
   basicServices = require('./services/basic');
 
 var app = express();
@@ -72,6 +72,7 @@ app.get('/iot', database.getData);  //GET
 app.get('/last', database.getLast);  //GET
 app.post('/iot', database.addIoT); //POST 
 
+app.get('/imu', basicServices.getImu); //POST 
 
 //Redirección por defecto
 app.get('*', function (req, res) {
@@ -83,16 +84,17 @@ app.get('*', function (req, res) {
 
 var mqtt = require('mqtt'), url = require('url');
 // Parse
-var mqtt_url = url.parse(process.env.CLOUDMQTT_URL || 'mqtt://localhost:1883');
-var auth = (mqtt_url.auth || ':').split(':');
+var mqtt_url = url.parse(process.env.CLOUDMQTT_URL || 'tcp://m10.cloudmqtt.com:19586');
+var auth = (mqtt_url.auth || 'azvhtoyy:lFd4B29vyXqj').split(':');
 var url = "mqtt://" + mqtt_url.host;
-
+console.log(mqtt_url);
 var options = {
   port: mqtt_url.port,
   clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
   username: auth[0],
   password: auth[1],
 };
+console.log(options);
 
 // Create a client connection
 var client = mqtt.connect(url, options);
@@ -105,15 +107,15 @@ client.on('connect', function() { // When connected
     client.on('message', function(topic, message, packet) {
       try{
         var msgJson = JSON.parse(message);
-        console.log(topic);
-        /*if(topic == 'imagine/press'){
+        console.log(packet.payload);
+        if(topic == 'imagine/press'){
           console.log("pressure of '" + msgJson.id + "' value '" + msgJson.value + "'");
           basicServices.mqttPress(msgJson.id,msgJson.value);
         }
         else if(topic == 'imagine/temp'){
           console.log("temperature of '" + msgJson.id + "' value '" + msgJson.value + "'");
           basicServices.mqttTemp(msgJson.id,msgJson.value);
-        }*/
+        }
         if(topic == 'imagine/bmp'){
           console.log("Sensor # '" + msgJson.id + "' has the values '" + msgJson.temp + " & " + msgJson.press);
           basicServices.mqttBmp(msgJson.id, msgJson.temp, msgJson.press);
@@ -121,6 +123,10 @@ client.on('connect', function() { // When connected
         else if(topic == 'imagine/ultra'){
           console.log("ultrasonic of '" + msgJson.id + "' value '" + msgJson.value + "'");
           basicServices.mqttUltra(msgJson.id,msgJson.value);
+        }
+        else if(topic == 'imagine/imu'){
+          console.log("Imu accepted '" + msgJson);
+          basicServices.mqttImu(msgJson);
         }
       }
       catch(e){
