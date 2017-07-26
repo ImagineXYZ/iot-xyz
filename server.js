@@ -107,7 +107,7 @@ client.on('connect', function() { // When connected
     client.on('message', function(topic, message, packet) {
       try{
         var msgJson = JSON.parse(message);
-        console.log(packet.payload);
+        //console.log(packet.payload);
         if(topic == 'imagine/press'){
           console.log("pressure of '" + msgJson.id + "' value '" + msgJson.value + "'");
           basicServices.mqttPress(msgJson.id,msgJson.value);
